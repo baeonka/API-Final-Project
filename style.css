@@ -62,41 +62,32 @@ NAV
 
 */
 
-.logo__container {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-}
-
 .logo {
     width: 200px;
     height: auto;
     margin-top: 40px;
 }
 
-.nav__container {
-    width: 100%;
-    max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
+.brand {
+    margin-right: auto;
+    font-size: 20px;
 }
 
-.nav__row {
+.nav__container {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
 .nav__links {
-    font-size: 16px;
+    font-size: 20px;
     display: flex;
-    padding: 0;
-    margin-left: 200px;
-
+    gap: 20px;
 }
 
 .nav__link {
+    width: 100%;
     padding: 8px 16px;
     color: #000;
     text-decoration: none;
