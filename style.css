@@ -63,14 +63,14 @@ NAV
 */
 
 .logo {
-    width: 200px;
+    width: 100px;
     height: auto;
-    margin-top: 40px;
+    margin-top: -14px;
 }
 
 .brand {
     margin-right: auto;
-    font-size: 20px;
+    font-size: 40px;
 }
 
 .nav__container {
@@ -82,6 +82,7 @@ NAV
 
 .nav__links {
     font-size: 20px;
+    font-weight: bold;
     display: flex;
     gap: 20px;
 }
@@ -93,6 +94,12 @@ NAV
     text-decoration: none;
 }
 
+/*
+
+LANDING
+
+*/
+
 .landing__container {
     display: flex;
     flex-direction: column;
@@ -100,4 +107,72 @@ NAV
     justify-content: center;
     height: 80vh;
     text-align: center;
+    background-image: url('./assets/posters1.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.landing__row {
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+}
+
+.search__input {
+    background-color: white;
+    padding: 10px 40px;
+    border-color: red;
+    border-radius: 16px;
+    margin-top: 20px;
+}
+
+.search__btn {
+    padding: 10px 20px;
+    border-radius: 16px;
+    background-color: black;
+    border: none;
+}
+
+.fa-magnifying-glass {
+    color: white;
+    font-size: 16px;
+}
+
+/*
+
+FOOTER 
+
+*/
+
+.footer {
+    position: relative;
+    z-index: 1;
+}
+
+.footer__row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo--img {
+    width: 150px;
+    height: auto;
+}
+
+.footer__links {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    justify-content: space-around;
+    margin: 28px 0;
+}
+
+.footer__link {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
 }
