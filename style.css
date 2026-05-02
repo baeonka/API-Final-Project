@@ -107,7 +107,7 @@ LANDING
     justify-content: center;
     height: 80vh;
     text-align: center;
-    background-image: url('./assets/posters1.png');
+    background-image: url('');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -141,6 +141,58 @@ LANDING
     font-size: 16px;
 }
 
+select {
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    height: 32px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 16px;
+    width: 100%;
+    max-width: 200px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/*
+
+MOVIES
+
+*/
+
+.movies__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 60px;
+    font-size: 60px;
+    color: red;
+}
+
+.movies__loading--spinner {
+    display: none !important;
+}
+
+.movies__loading .movies__loading--spinner {
+    display: block !important;
+}
+
+.fa-spinner {
+    animation: rotate 600ms infinite linear;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /*
 
 FOOTER 
@@ -150,6 +202,10 @@ FOOTER
 .footer {
     position: relative;
     z-index: 1;
+}
+
+.footer__container {
+    margin-top: 100px;
 }
 
 .footer__row {

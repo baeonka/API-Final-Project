@@ -27,10 +27,40 @@
                 <h3 class="sub__title">What are you watching tonight?</h3>
                 <input type="text" class="search__input" placeholder="Name a film. Any film.">
                 <button class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+                 <div class="movies__sort">
+
+                        <select id="filter" onchange="filterMovies()">
+                            <option value="" disabled selected>Sort</option>
+                            <option value="NEW_TO_OLD">Newest to Oldest</option>
+                            <option value="OLD_TO_NEW">Oldest to Newest</option>
+                            <option value="A_TO_Z">A to Z</option>
+                            <option value="Z_TO_A">Z to A</option>
+                        </select>
+                    </div>
             </div>
         </div>
     </section>
-    
+
+    <section id="movies">
+        <div class="movies__container">
+            <div class="row">
+                <i class="fas fa-spinner movies__loading movies__loading--spinner"></i>
+                <div class="movie-list">
+                    <div class="movie">
+                        <div class="movie-poster">
+                            <div class="movie__info--container">
+                                <h3>Movie Title</h3>
+                                <p><b>Release Year:</b> 2000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <footer>
         <div class="container">
             <div class="row footer__row">
@@ -61,4 +91,5 @@
     </footer>
 
 </body>
+<script src="script.js"></script>
 </html>
