@@ -163,6 +163,16 @@ MOVIES
 
 */
 
+.movies__container {
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 40px;
+}
+
+.movies__info--container {
+    justify-content: center;
+    align-items: center;
+}
 .movies__loading {
     display: flex;
     align-items: center;
