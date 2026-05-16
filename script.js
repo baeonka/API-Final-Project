@@ -4,9 +4,9 @@
 const movieListEl = document.querySelector(".movie-list");
 
 async function main() {
-    const movies = await fetch ("https://www.omdapi.com/?aipkey=f5e4332a&");
+    const movies = await fetch ("https://www.omdapi.com/?apikey=f5e4332a&s=avengers");
     const moviesData = await movies.json();
-    movieListEl.innerHTML = moviesData.map((movie) => movieHTML(movie)).join("");
+    movieListEl.innerHTML = moviesData.Search.map(.)
 }
 
 main();
@@ -18,12 +18,12 @@ function showMovieInfo(imdbID) {
 }
 
 function movieHTML(movie) {
-    return `<div class="movie" onClick="showMovieInfo(${movie.imdbID})>
-                        <div class=${movie.poster}"movie-poster">
+    return `<div class="movie" onClick="showMovieInfo(`${movie.imdbID}`)">
+                        <img src"${movie.Poster}" class="movie-poster">
                             <div class="movie__info--container">
-                                <h3>${movie.title}Movie Title:</h3>
-                                <p><b>Release Year:</b>${movie.year}2000</p>
-                                <p><b>Media Type:</b>${movie.type} movie</p>
+                                <h3>${movie.Title}Movie Title:</h3>
+                                <p><b>Release Year:</b>${movie.Year}2000</p>
+                                <p><b>Media Type:</b>${movie.Type} movie</p>
                             </div>
                         </div>
                     </div>`
