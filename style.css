@@ -48,7 +48,7 @@ a:hover {
 
 ul {
     display: flex;
-    padding; 0;
+    padding: 0;
     margin: 0;
 }
 
@@ -61,12 +61,6 @@ li {
 NAV 
 
 */
-
-.logo {
-    width: 100px;
-    height: auto;
-    margin-top: -4px;
-}
 
 .brand {
     margin-right: auto;
@@ -207,16 +201,20 @@ MOVIES
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-top: 60px;
+    margin-top: 60px;
     font-size: 60px;
     color: red;
+}
+
+.movies__container::-webkit-scrollbar {
+    display: none;
 }
 
 .movies__loading--spinner {
     display: none !important;
 }
 
-.movies__loading .movies__loading--spinner {
+.movies__loading.movies__loading--spinner {
     display: block !important;
 }
 

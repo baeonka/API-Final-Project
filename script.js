@@ -22,12 +22,13 @@ function filterMovies(event) {
 
 async function renderMovies(filter) {
     const moviesWrapper = document.querySelector('.movie-list');
-    moviesWrapper.classList += " movies__loading";
+    const loadingSpinner = document.querySelector('.movies__loading--spinner')
+    loadingSpinner.classList += " movies__loading";
 
     if (!movies) {
         movies = await getMovies();
     }
-    moviesWrapper.classList.remove('movies__loading')
+    loadingSpinner.classList.remove('movies__loading')
 
     if (filter === 'NEW_TO_OLD') {
         movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
