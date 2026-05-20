@@ -28,8 +28,6 @@ async function renderMovies(filter) {
     if (!movies) {
         movies = await getMovies();
     }
-    loadingSpinner.classList.remove('movies__loading')
-
     if (filter === 'NEW_TO_OLD') {
         movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
     }
@@ -56,6 +54,34 @@ async function renderMovies(filter) {
     }).join('');
 
     moviesWrapper.innerHTML = moviesHTML;
+    loadingSpinner.classList.remove('movies__loading')
 }
 
+function searchMovies(event) {
+    const searchInput = document.getElementById('search').value.trim().toLowerCase();
+    const filteredMovies = movies.filter(movie => movie.Title.toLowerCase().includes(searchInput));
+    renderFilteredMovies(filteredMovies);
+}
+
+function renderFilteredMovies (filteredMovies) {
+    const moviesWrapper = document.querySelector('.movie-list');
+
+    const moviesHTML = filteredMovies.map((movie) => {
+        return `<div class="movie" onClick="showMovieInfo('${movie.imdbID}')">
+                        <img src="${movie.Poster}" class="movie-poster">
+                            <div class="movie__info--container">
+                                <h3>Title: ${movie.Title}</h3>
+                                <p><b>Release Year: </b>${movie.Year}</p>
+                                <p><b>Media Type: </b>${movie.Type}</p>
+                            </div>
+                        </div>`
+    }).join('');
+
+    moviesWrapper.innerHTML = moviesHTML;
+}
+
+document.getElementById('filter').addEventListener('change', filterMovies);
+document.getElementById('search').addEventListener('input', searchMovies);
+
 renderMovies();
+

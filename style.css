@@ -127,6 +127,7 @@ LANDING
     border-radius: 16px;
     background-color: black;
     border: none;
+    cursor: pointer;
 }
 
 .fa-magnifying-glass {
