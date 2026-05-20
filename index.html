@@ -24,8 +24,10 @@
             <div class="row landing__row">
                 <h1 class="title">The World's Stories, At Your Fingertips</h1>
                 <h3 class="sub__title">What are you watching tonight?</h3>
-                <input type="text" class="search__input" onchange="searchMovies(event)" placeholder="Name a film. Any film.">
-                <button class="search__btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <div class="search__container">
+                <input type="text" id="search" class="search__input" placeholder="Name a film. Any film.">
+                <button class="search__btn" onclick="searchMovies(event)"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
 
                  <div class="movies__sort">
 

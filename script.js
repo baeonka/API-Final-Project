@@ -2,10 +2,12 @@
 // https://img.omdbapi.com/?apikey=f5e43e2a&
 
 const movieListEl = document.querySelector(".movie-list");
+const moviesWrapper =document.querySelector('movie-list');
+const loadingSpinner = document.querySelector('.movies__loading--spinner');
 let movies;
 
-async function getMovies() {
-    const movies = await fetch ("https://www.omdbapi.com/?apikey=f5e43e2a&s=avengers");
+async function getMovies(searchTerm = "avengers") {
+    const movies = await fetch (`https://www.omdbapi.com/?apikey=f5e43e2a&s=${searchTerm}`);
     const moviesData = await movies.json();
     return moviesData.Search;
 }
@@ -21,8 +23,6 @@ function filterMovies(event) {
 }
 
 async function renderMovies(filter) {
-    const moviesWrapper = document.querySelector('.movie-list');
-    const loadingSpinner = document.querySelector('.movies__loading--spinner')
     loadingSpinner.classList += " movies__loading";
 
     if (!movies) {
@@ -57,14 +57,25 @@ async function renderMovies(filter) {
     loadingSpinner.classList.remove('movies__loading')
 }
 
-function searchMovies(event) {
-    const searchInput = document.getElementById('search').value.trim().toLowerCase();
-    const filteredMovies = movies.filter(movie => movie.Title.toLowerCase().includes(searchInput));
+async function searchMovies(event) {
+    const searchInput = event.target.value.trim().toLowerCase();
+    if (!searchInput) {
+        main();
+        return;
+    }
+    loadingSpinner.classList.add("movies__loading");
+    moviesWrapper.innerHTML = '';
+    const filteredMovies = await getMovies(searchInput);
     renderFilteredMovies(filteredMovies);
+    loadingSpinner.classList.remove("movies__loading");
 }
 
 function renderFilteredMovies (filteredMovies) {
-    const moviesWrapper = document.querySelector('.movie-list');
+    
+    if (!filteredMovies || filteredMovies.length === 0) {
+        moviesWrapper.innerHTML = '<p class = "search__fail">No movies found. Try another search.</p>';
+        return; 
+    }
 
     const moviesHTML = filteredMovies.map((movie) => {
         return `<div class="movie" onClick="showMovieInfo('${movie.imdbID}')">
@@ -80,8 +91,14 @@ function renderFilteredMovies (filteredMovies) {
     moviesWrapper.innerHTML = moviesHTML;
 }
 
-document.getElementById('filter').addEventListener('change', filterMovies);
-document.getElementById('search').addEventListener('input', searchMovies);
+function main() {
+    const searchInput = document.getElementById('search');
+    searchInput.addEventListener('input', searchMovies);
+    const filter = document.getElementById('filter');
+    filter.addEventListener('change', filterMovies);
+    renderMovies();
+}
 
-renderMovies();
+main();
+
 

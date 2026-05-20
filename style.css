@@ -128,6 +128,7 @@ LANDING
     background-color: black;
     border: none;
     cursor: pointer;
+    margin-top: 20px;
 }
 
 .fa-magnifying-glass {
@@ -149,6 +150,19 @@ select {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+}
+
+.search__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search__fail {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 24px;
 }
 
 /*
@@ -204,7 +218,7 @@ MOVIES
     justify-content: center;
     margin-top: 60px;
     font-size: 60px;
-    color: red;
+    color: #000;
 }
 
 .movies__container::-webkit-scrollbar {
