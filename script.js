@@ -18,53 +18,17 @@ function showMovieInfo(imdbID) {
     console.log(imdbID);
 }
 
-function filterMovies(event) {
-    renderMovies(event.target.value);
-}
-
-async function renderMovies(filter) {
-    loadingSpinner.classList.add("movies__loading");
-
-    if (!movies) {
-        movies = await getMovies();
-    }
-    if (filter === 'NEW_TO_OLD') {
-        movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
-    } else if (filter === 'OLD_TO_NEW') {
-        movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
-    } else if (filter === 'A_TO_Z') {
-        movies.sort((a, b) => a.Title.localeCompare(b.Title));
-    } else if (filter === 'Z_TO_A') {
-        movies.sort((a, b) => b.Title.localeCompare(a.Title));
-    }
-
-    const moviesHTML = movies
-        .map((movie) => {
-            return `<div class="movie" onClick="showMovieInfo('${movie.imdbID}')">
-                        <img src="${movie.Poster}" class="movie-poster">
-                            <div class="movie__info--container">
-                                <h3>Title: ${movie.Title}</h3>
-                                <p><b>Release Year: </b>${movie.Year}</p>
-                                <p><b>Media Type: </b>${movie.Type}</p>
-                            </div>
-                        </div>`;
-        }).join('');
-
-    moviesWrapper.innerHTML = moviesHTML;
-    loadingSpinner.classList.remove('movies__loading');
-
-}
-
 async function searchMovies() {
     const searchInput = document.getElementById('search').value.trim().toLowerCase();
     if (!searchInput) {
+        movies = [];
         moviesWrapper.innerHTML = "";
         return;
     }
     loadingSpinner.classList.add("movies__loading");
     moviesWrapper.innerHTML = '';
-    const filteredMovies = await getMovies(searchInput);
-    renderFilteredMovies(filteredMovies);
+    movies = await getMovies(searchInput);
+    renderFilteredMovies(movies);
     loadingSpinner.classList.remove('movies__loading');
 }
 
@@ -87,6 +51,44 @@ function renderFilteredMovies(filteredMovies) {
     }).join('');
 
     moviesWrapper.innerHTML = moviesHTML;
+}
+
+function filterMovies(event) {
+    renderMovies(event.target.value);
+}
+
+async function renderMovies(filter) {
+    loadingSpinner.classList.add("movies__loading");
+
+    if (!movies) {
+        movies = await getMovies();
+    }
+    if (filter === 'NEW_TO_OLD') {
+        movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+    } else if (filter === 'OLD_TO_NEW') {
+        movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+    } else if (filter === 'A_TO_Z') {
+        movies.sort((a, b) => a.Title.localeCompare(b.Title));
+    } else if (filter === 'Z_TO_A') {
+        movies.sort((a, b) => b.Title.localeCompare(a.Title));
+    }
+
+    renderFilteredMovies(movies);
+
+    const moviesHTML = movies
+        .map((movie) => {
+            return `<div class="movie" onClick="showMovieInfo('${movie.imdbID}')">
+                        <img src="${movie.Poster}" class="movie-poster">
+                            <div class="movie__info--container">
+                                <h3>Title: ${movie.Title}</h3>
+                                <p><b>Release Year: </b>${movie.Year}</p>
+                                <p><b>Media Type: </b>${movie.Type}</p>
+                            </div>
+                        </div>`;
+        }).join('');
+
+    moviesWrapper.innerHTML = moviesHTML;
+    loadingSpinner.classList.remove('movies__loading');
 }
 
 function main() {
